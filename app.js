@@ -11,7 +11,7 @@ const logMemoryUsage = (id, message) => {
   return msg
 }
 
-app.post('/generar-mapa', async (req, res) => {
+app.post('/', async (req, res) => {
 
   const { width = 540, height = 540 } = req.body
 
@@ -133,6 +133,15 @@ app.post('/generar-mapa', async (req, res) => {
     'Content-Length': screenshot.length,
   });
   res.end(screenshot);
+});
+
+app.get('/', (req, res) => {
+  res.send('Bienvenido a al servicio de mapas!');
+});
+
+//404
+app.use((req, res) => {
+  res.status(200).send('Bienvenido a al servicio de mapas!\nSe encuentra en la ruta equivocada, por favor verifique la documentación');
 });
 
 app.listen(port, () => {
