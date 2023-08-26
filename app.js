@@ -1,6 +1,10 @@
 const express = require('express');
 const puppeteer = require('puppeteer');
 const app = express();
+const cors = require('cors');
+// const swaggerUi = require('swagger-ui-express');
+// const swaggerDocument = require('./swagger.json');
+
 const port = process.env.PORT || 3000;
 
 
@@ -11,6 +15,7 @@ const logMemoryUsage = (id, message) => {
   return msg
 }
 
+app.use(cors())
 app.use(express.json());
 
 
@@ -148,6 +153,9 @@ app.post('/', async (req, res) => {
 app.get('/', (req, res) => {
   res.send('Bienvenido a al servicio de mapas!');
 });
+
+// router.use('/api-docs', swaggerUi.serve);
+// router.get('/api-docs', swaggerUi.setup(swaggerDocument));
 
 //404
 app.use((req, res) => {
